@@ -51,6 +51,7 @@
 
   <!-- Main HTML -->
   <button id="copyButton">コピー</button>
+  <p id="message" style="display: none; color: green;"></p>
 
   <!-- Main javascript -->
   <script>
@@ -67,7 +68,10 @@
             document.execCommand('copy');
             document.body.removeChild(tempInput);
 
-            alert('「id」の値 ' + id + ' がクリップボードにコピーされました！');
+            const message = document.getElementById('message');
+            message.style.display = 'block';
+            message.textContent = '「id」の値 ' + id + ' がクリップボードにコピーされました！';
+        
           });
 
   </script>
