@@ -19,41 +19,25 @@
 <body>
 
   <!-- Main HTML -->
-  <form action="">
-    <div class="mx-4 my-2">
-      <label id="param1_label" for="param1">param:</label>
-      <input type="text" id="param1_input" name="param1">
-    </div>
-    <div class="btn-toolbar mx-4 my-2">
-        <input type="submit" id="mainButton" value="実行" class="btn btn-primary mx-1"></input>
-        <div id="redoButton" class="btn btn-secondary mx-1">
-          <i class="fas fa-redo"></i>
-        </div>
-    </div>
-  </form>
-  <div id="mainMessage" class="m-4"></div>
+  <button id="copyButton">コピー</button>
 
   <!-- Main javascript -->
   <script>
-    // URLパラメータを取得する
-    function copyIdToClipboard() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const id = urlParams.get("id");
+   document.getElementById('copyButton').addEventListener('click', function() {
+            // URLから「id」パラメータの値を取得
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
 
-  if (id) {
-    const textarea = document.createElement("textarea");
-    textarea.value = id;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
+            // クリップボードにコピーする
+            const tempInput = document.createElement('input');
+            tempInput.value = id;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
 
-    alert("「id」がクリップボードにコピーされました！♡");
-  } else {
-    alert("URLパラメータ「id」が見つかりませんでした... せっかくコピーするのに、ちょっと待ってみてね！");
-  }
-}
-
+            alert('「id」の値 ' + id + ' がクリップボードにコピーされました！');
+          });
 
   </script>
 
